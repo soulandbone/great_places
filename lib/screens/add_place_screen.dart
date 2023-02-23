@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/image_input_widget.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   static const routeName = '/add-place';
@@ -8,22 +9,37 @@ class AddPlaceScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
+  final _titleController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Add a place of your own')),
+      appBar: AppBar(title: const Text('Add a new place')),
       body: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Expanded(
             child: SingleChildScrollView(
-          child: Column(
-            children: [Text('This is the new Input with Expanded')],
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                TextField(
+                  controller: _titleController,
+                  decoration: const InputDecoration(hintText: 'Title'),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const ImageInput()
+              ],
+            ),
           ),
         )),
-        TextButton(
+        TextButton.icon(
+          icon: const Icon(Icons.add),
           onPressed: () {},
-          child: const Text('Add Place'),
           style: TextButton.styleFrom(
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               backgroundColor: Theme.of(context).accentColor),
+          label: const Text('Add Place'),
         )
       ]),
     );
