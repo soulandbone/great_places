@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './add_place_screen.dart';
 
 class PlaceList extends StatelessWidget {
   const PlaceList({super.key});
@@ -8,7 +9,13 @@ class PlaceList extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Place List'),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(AddPlaceScreen.routeName);
+              },
+              icon: const Icon(Icons.add))
+        ],
       ),
       body: const Center(child: CircularProgressIndicator()),
     );
