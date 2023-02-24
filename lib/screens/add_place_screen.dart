@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../widgets/image_input_widget.dart';
 
 class AddPlaceScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class AddPlaceScreen extends StatefulWidget {
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final _titleController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
