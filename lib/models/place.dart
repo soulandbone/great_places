@@ -6,7 +6,7 @@ class Place {
   String id;
   String title;
   File image;
-  PlaceLocation location;
+  PlaceLocation? location;
 
   Place(
       {required this.id,

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:great_places/providers/great_places_provider.dart';
+import 'package:provider/provider.dart';
+import 'dart:io';
 
 import '../widgets/image_input_widget.dart';
 
@@ -11,6 +14,17 @@ class AddPlaceScreen extends StatefulWidget {
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final _titleController = TextEditingController();
+  File? _chosenImage;
+
+  void _pickImage(File chosenImage) {
+    _chosenImage = chosenImage;
+  }
+
+  void _submitPlace() {
+    Provider.of<GreatPlacesProvider>(context, listen: false)
+        .addPlace(_titleController.text, _chosenImage!);
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +44,14 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                const ImageInput()
+                ImageInput(_pickImage)
               ],
             ),
           ),
         )),
         TextButton.icon(
           icon: const Icon(Icons.add),
-          onPressed: () {},
+          onPressed: _submitPlace,
           style: TextButton.styleFrom(
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               backgroundColor: Theme.of(context).accentColor),
